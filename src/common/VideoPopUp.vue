@@ -3,7 +3,7 @@
     <div v-if="visible" class="video-pop-up" @click="handleBackdropClick">
       <Transition name="scale" appear>
         <div class="video-pop-up-container" @click.stop>
-          <div class="video-pop-up-title">精彩案例</div>
+          <div class="video-pop-up-title">{{ $t('videoPopup.title') }}</div>
           <button class="close-btn" @click="close">✕</button>
           <div class="swiper-container">
             <div class="swiper-button-prev">

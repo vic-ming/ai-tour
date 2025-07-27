@@ -196,11 +196,11 @@ export default {
     fields: {
       name: 'Contact Name',
       company: 'Company Name',
-      email: 'Email',
-      phone: 'Phone',
+      email: 'Email Address',
+      phone: 'Phone Number',
       placeholder: 'Please fill in'
     },
-    requirements: 'Rental & Plan Requirements',
+    requirements: 'Rental & Plan Preferences',
     deviceType: 'AI Guide Device Model Selection',
     rentDuration: 'Rental Duration / Annual Contract (or Purchase)',
     memberPlan: 'Membership Plan',
@@ -220,7 +220,7 @@ export default {
 
   // VideoPopUp Component
   videoPopup: {
-    title: 'Amazing Cases'
+    title: 'Success Stories',
   },
 
   // AdvantagesView Component

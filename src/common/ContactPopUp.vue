@@ -3,52 +3,52 @@
     <div v-if="visible" class="contact-pop-up" @click="handleBackdropClick">
       <Transition name="scale" appear>
         <div class="contact-pop-up-container" @click.stop>
-          <div class="contact-pop-up-title">聯絡我們</div>
+          <div class="contact-pop-up-title">{{ $t('contactPopup.title') }}</div>
           <button class="close-btn" @click="close">✕</button>
           <div class="contact-pop-up-form">
             <div class="form-group">
-              <div class="contact-pop-up-form-item-title">顧客基本資料</div>
+              <div class="contact-pop-up-form-item-title">{{ $t('contactPopup.customerInfo') }}</div>
               <div class="contact-pop-up-form-item">
-                <label for="name">聯絡人姓名<span>*</span></label>
-                <input type="text" id="name" v-model="formData.name" placeholder="請填寫">
+                <label for="name">{{ $t('contactPopup.fields.name') }}<span>*</span></label>
+                <input type="text" id="name" v-model="formData.name" :placeholder="$t('contactPopup.fields.placeholder')">
               </div>
               <div class="contact-pop-up-form-item">
-                <label for="company">公司名稱<span>*</span></label>
-                <input type="text" id="company" v-model="formData.company" placeholder="請填寫">
+                <label for="company">{{ $t('contactPopup.fields.company') }}<span>*</span></label>
+                <input type="text" id="company" v-model="formData.company" :placeholder="$t('contactPopup.fields.placeholder')">
               </div>
               <div class="contact-pop-up-form-item">
-                <label for="email">聯絡信箱</label>
-                <input type="text" id="email" v-model="formData.email" placeholder="請填寫">
+                <label for="email">{{ $t('contactPopup.fields.email') }}</label>
+                <input type="text" id="email" v-model="formData.email" :placeholder="$t('contactPopup.fields.placeholder')">
               </div>
               <div class="contact-pop-up-form-item">
-                <label for="phone">聯絡電話</label>
-                <input type="text" id="phone" v-model="formData.phone" placeholder="請填寫">
+                <label for="phone">{{ $t('contactPopup.fields.phone') }}</label>
+                <input type="text" id="phone" v-model="formData.phone" :placeholder="$t('contactPopup.fields.placeholder')">
               </div>
             </div>
             <div class="form-group">
-              <div class="contact-pop-up-form-item-title">租借與方案需求</div>
+              <div class="contact-pop-up-form-item-title">{{ $t('contactPopup.requirements') }}</div>
               <div class="contact-pop-up-form-radio-item">
-                <label for="name">AI 導覽機台型號選擇</label>
+                <label for="name">{{ $t('contactPopup.deviceType') }}</label>
                 <div class="radio-list">
-                  <div class="radio-item" v-for="size in sizeOptions" :key="size" @click="formData.size = size" :class="{ 'active': formData.size === size }">{{ size }}</div>
+                  <div class="radio-item" v-for="size in sizeOptions" :key="size.key" @click="formData.size = size.key" :class="{ 'active': formData.size === size.key }">{{ $t(size.label) }}</div>
                 </div>
               </div>
               <div class="contact-pop-up-form-radio-item">
-                <label for="name">租期長度 / 年約（或買斷）</label>
+                <label for="name">{{ $t('contactPopup.rentDuration') }}</label>
                 <div class="radio-list">
-                  <div class="radio-item" v-for="due in dueOptions" :key="due" @click="formData.due = due" :class="{ 'active': formData.due === due }">{{ due }}</div>
+                  <div class="radio-item" v-for="due in dueOptions" :key="due.key" @click="formData.due = due.key" :class="{ 'active': formData.due === due.key }">{{ $t(due.label) }}</div>
                 </div>
               </div>
               <div class="contact-pop-up-form-radio-item">
-                <label for="name">會員方案</label>
+                <label for="name">{{ $t('contactPopup.memberPlan') }}</label>
                 <div class="radio-list">
-                  <div class="radio-item" v-for="member in memberOptions" :key="member" @click="formData.member = member" :class="{ 'active': formData.member === member }">{{ member }}</div>
+                  <div class="radio-item" v-for="member in memberOptions" :key="member.key" @click="formData.member = member.key" :class="{ 'active': formData.member === member.key }">{{ $t(member.label) }}</div>
                 </div>
               </div>
             </div>
           </div>
           <div class="contact-pop-up-form-submit">
-            <button class="submit-btn">送出</button>
+            <button class="submit-btn" :disabled="!formData.name || !formData.company || !formData.size || !formData.due || !formData.member" @click="handleSubmit">{{ $t('common.buttons.submit') }}</button>
           </div>
         </div>
       </Transition>
@@ -57,6 +57,9 @@
 </template>
 <script setup>
 import { ref, defineProps, defineEmits, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t: $t } = useI18n()
 
 const props = defineProps({
   modelValue: {
@@ -75,9 +78,22 @@ const formData = ref({
   member: '',
 })
 
-const sizeOptions = ['32吋', '55吋']
-const dueOptions = ['7 天', '30 日', '3 個月', '年約（買斷）']
-const memberOptions = ['優選會員', '企業會員']
+const sizeOptions = [
+  { key: 'size32', label: 'plan.sizes.size32' },
+  { key: 'size55', label: 'plan.sizes.size55' }
+]
+
+const dueOptions = [
+  { key: 'week', label: 'contactPopup.options.durations.week' },
+  { key: 'month', label: 'contactPopup.options.durations.month' },
+  { key: 'quarter', label: 'contactPopup.options.durations.quarter' },
+  { key: 'yearly', label: 'contactPopup.options.durations.yearly' }
+]
+
+const memberOptions = [
+  { key: 'premium', label: 'contactPopup.options.members.premium' },
+  { key: 'enterprise', label: 'contactPopup.options.members.enterprise' }
+]
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -89,6 +105,11 @@ const close = () => {
 }
 
 const handleBackdropClick = () => {
+  close()
+}
+
+const handleSubmit = () => {
+  console.log(formData.value)
   close()
 }
 
