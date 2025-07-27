@@ -1,0 +1,149 @@
+<template>
+  <div class="return-view">
+    <div class="return-view-container container">
+      <div class="return-view-content" data-aos="fade-up">
+        <div class="return-view-title">{{ $t('return.title') }}</div>
+        <div class="return-view-description" v-html="$t('return.description')"></div>
+      </div>
+      <div class="return-view-content-list" :class="{ 'return-view-content-list-en': !isZH }">
+        <div class="return-view-content-list-item" v-for="(item, index) in returnViewList" :key="item.key" data-aos="fade-up" :data-aos-delay="index * 200">
+          <div class="return-view-content-list-item-icon">
+            <img :src="item.icon" alt="return-view-content-list-item-icon">
+          </div>
+          <div class="return-view-content-list-item-percent">
+            {{ item.percent }}
+          </div>
+          <div class="return-view-content-list-item-text">
+            {{ $t(`return.metrics.${item.key}`) }}
+          </div>
+          <div class="return-view-content-list-item-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+import { computed } from 'vue'
+import return1 from '@/assets/images/return-1.svg'
+import return2 from '@/assets/images/return-2.svg'
+import return3 from '@/assets/images/return-3.svg'
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+const isZH = computed(() => locale.value === 'zh-TW')
+const returnViewList = [
+  {
+    key: 'exploration',
+    percent: '20-40%',
+    icon: return1,
+  },
+  {
+    key: 'cost',
+    percent: '30%',
+    icon: return2,
+  },
+  {
+    key: 'interaction',
+    percent: '30-60%',
+    icon: return3,
+  },
+]
+
+</script>
+<style lang="scss" scoped>
+$primary-color: #353535;
+.return-view {
+  background-color: #fafafa;
+  width: 100%;
+  height: 700px;
+  background-image: url('@/assets/images/return-bg.webp');
+  background-size: 100% 425px;
+  background-position: top;
+  background-repeat: no-repeat;
+  .return-view-container {
+    .return-view-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 12px;
+      padding-top: 103px;
+      .return-view-title {
+        font-size: 48px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .return-view-description {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.5;
+        color: #fff;
+      }
+    }
+    .return-view-content-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 87.5px;
+      &.return-view-content-list-en {
+       padding-top: 72px;
+      }
+      .return-view-content-list-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 48px 32px;
+        .return-view-content-list-item-icon {
+          width: 115px;
+          height: 115px;
+        }
+        .return-view-content-list-item-percent {
+
+          font-size: 40px;
+          font-weight: 700;
+          background: linear-gradient(90deg, #0DC0DE 34.62%, #6ECCA9 51.33%, #FCDE5B 67.1%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+          line-height: 1.5;
+        }
+        .return-view-content-list-item-text {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1.5;
+          color: $primary-color;
+        }
+        .return-view-content-list-item-dots {
+          margin-top: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: block;
+            &:nth-child(1) {
+              background: #0FC0DD;
+            }
+            &:nth-child(2) {
+              background: #6BCCAB;
+            }
+            &:nth-child(3) {
+              background: #FDDD59;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>
