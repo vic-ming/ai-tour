@@ -52,7 +52,7 @@ import DeviceView from '@/components/DeviceView.vue'
 import PriceView from '@/components/PriceView.vue'
 import AddOnView from '@/components/AddOnView.vue'
 import ContactView from '@/components/ContactView.vue'
-import ContactPopUp from '@/common/ContactPopup.vue'
+import ContactPopUp from '@/common/ContactPopUp.vue'
 import VideoPopUp from '@/common/VideoPopUp.vue'
 import MobileMenuPopUp from '@/common/MobileMenuPopup.vue'
 
