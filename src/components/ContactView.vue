@@ -14,11 +14,13 @@
         </button>
       </div>
     </div>
-    <img src="@/assets/images/contact-1.webp" alt="contact-1" class="contact-view-image contact-view-image-1">
-    <img src="@/assets/images/contact-2.webp" alt="contact-2" class="contact-view-image contact-view-image-2">
-    <img src="@/assets/images/contact-3.webp" alt="contact-3" class="contact-view-image contact-view-image-3">
-    <img src="@/assets/images/contact-4.webp" alt="contact-4" class="contact-view-image contact-view-image-4">
-    <img src="@/assets/images/contact-5.webp" alt="contact-5" class="contact-view-image contact-view-image-5">
+    <div class="contact-view-image-container">
+      <img src="@/assets/images/contact-1.webp" alt="contact-1" class="contact-view-image contact-view-image-1">
+      <img src="@/assets/images/contact-2.webp" alt="contact-2" class="contact-view-image contact-view-image-2">
+      <img src="@/assets/images/contact-3.webp" alt="contact-3" class="contact-view-image contact-view-image-3">
+      <img src="@/assets/images/contact-4.webp" alt="contact-4" class="contact-view-image contact-view-image-4">
+      <img src="@/assets/images/contact-5.webp" alt="contact-5" class="contact-view-image contact-view-image-5">
+    </div>
   </div>
 </template>
 <script setup>
@@ -39,6 +41,7 @@ $primary-color: #353535;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   .contact-view-container {
     display: flex;
     flex-direction: column;
@@ -47,6 +50,7 @@ $primary-color: #353535;
     gap: 48px;
     position: relative;
     z-index: 1;
+    box-sizing: border-box;
     .contact-view-title {
       display: flex;
       align-items: flex-start;
@@ -137,12 +141,142 @@ $primary-color: #353535;
       bottom: 227px;
       right: 74px;
       animation-delay: 1.8s;
+      z-index: 1;
     }
     &.contact-view-image-5 {
       height: 203px;
       bottom: 111px;
-      right: 0;
+      right: -43px;
       animation-delay: 2.4s;
+    }
+  }
+}
+@media (max-width: 1320px) {
+  .contact-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    padding: 48px 0;
+    height: auto;
+    .contact-view-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      .contact-view-title {
+        justify-content: center;
+      }
+      .contact-view-description {
+        text-align: center;
+      }
+
+    }
+    .contact-view-image-container {
+      position: relative;
+      width: 1px;
+      height: 550px;
+      .contact-view-image{
+        position: absolute;
+
+        &.contact-view-image-1 {
+          width: 339px;
+          bottom: 188px;
+          right: 150px;
+          animation-delay: 0s;
+        }
+        &.contact-view-image-2 {
+          width: 274px;
+          bottom: 39px;
+          right: 3px;
+          animation-delay: 0.6s;
+        }
+        &.contact-view-image-3 {
+          width: 172px;
+          bottom: 348px;
+          right: -35px;
+          animation-delay: 1.2s;
+        }
+        &.contact-view-image-4 {
+          width: 251px;
+          bottom: 177px;
+          right: -276px;
+          animation-delay: 1.8s;
+        }
+        &.contact-view-image-5 {
+          height: 203px;
+          bottom: 61px;
+          right: -393px;
+          animation-delay: 2.4s;
+        }
+      }
+
+    }
+  }
+}
+@media (max-width: 768px) {
+  .contact-view {
+    background-image: url('@/assets/images/contact-bg-mobile.webp');
+    .contact-view-container {
+      gap: 32px;
+      .contact-view-title{
+        font-size: 32px;
+      }
+      .contact-view-description{
+        font-size: 24px;
+      }
+
+    }
+    .contact-view-image-container {
+      height: 690px;
+      .contact-view-image{
+        position: absolute;
+
+        &.contact-view-image-1 {
+          width: 237px;
+          top: 0;
+          right: -24px;
+          animation-delay: 0s;
+        }
+        &.contact-view-image-2 {
+          width: 192px;
+          top: 108px;
+          right: -210px;
+          animation-delay: 0.6s;
+        }
+        &.contact-view-image-3 {
+          width: 120px;
+          top: 412px;
+          right: -174px;
+          animation-delay: 1.2s;
+        }
+        &.contact-view-image-4 {
+          width: 175px;
+          top: 290px;
+          right: -15px;
+          animation-delay: 1.8s;
+        }
+        &.contact-view-image-5 {
+          height: 154px;
+          top: 535px;
+          right: -77px;
+          animation-delay: 2.4s;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  .contact-view {
+    .contact-view-image-container {
+      height: 690px;
+      .contact-view-image{
+        &.contact-view-image-2 {
+          right: -180px;
+        }
+      }
     }
   }
 }

@@ -14,7 +14,7 @@
             </div>
             <swiper
               :modules="modules"
-              :loop="false"
+              :loop="true"
               :pagination="false"
               :navigation="{
                   nextEl: '.swiper-button-next',
@@ -204,7 +204,7 @@ $primary-color: #353535;
     max-width: 886px;
     height: calc(100vh - 200px);
     background-color: #fff;
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 26px 52px;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
     display: flex;
@@ -214,6 +214,7 @@ $primary-color: #353535;
     gap: 27px;
     overflow-y: auto;
     margin: 100px 0;
+    box-sizing: border-box;
 
     .close-btn {
       position: absolute;
@@ -282,6 +283,30 @@ $primary-color: #353535;
     }
     .swiper-button-next {
       right: -24px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .video-pop-up {
+    .video-pop-up-container {
+      width: calc(100% - 32px);
+      padding: 32px 30px;
+      gap: 24px;
+      .close-btn {
+        top: 38px;
+        right: 30px;
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+      }
+      .video-pop-up-title {
+        font-size: 24px;
+      }
+
+      .swiper-button-prev, .swiper-button-next {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 }

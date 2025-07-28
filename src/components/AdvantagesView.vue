@@ -149,6 +149,7 @@ $primary-color: #353535;
     flex-direction: column;
     gap: 48px;
     box-sizing: border-box;
+    max-width: 1228px;
     .advantages-view-tabs {
       display: flex;
       justify-content: center;

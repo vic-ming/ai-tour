@@ -14,7 +14,7 @@
       <div class="ripple ripple-3"></div>
     </div>
     <div class="chat-view-video">
-      <video src="@/assets/video/chat_video.webm" autoplay muted loop></video>
+      <video src="@/assets/video/chat_video_1.webm" autoplay muted loop></video>
     </div>
   </div>
 </template>

@@ -152,11 +152,12 @@ $primary-color: #353535;
 
   .contact-pop-up-container {
     position: relative;
+    box-sizing: border-box;
     width: calc(100% - 48px);
     max-width: 886px;
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 100px);
     background-color: #fff;
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 46px 64px 64px 64px;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
     display: flex;
@@ -234,7 +235,8 @@ $primary-color: #353535;
           input {
             flex: 1;
             height: 50px;
-            border-radius: 8px;
+            min-height: 50px;
+            border-radius: 4px;
             padding: 0 16px;
             font-size: 16px;
             font-weight: 400;
@@ -259,8 +261,9 @@ $primary-color: #353535;
           .radio-list {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 12px;
+            flex-wrap: wrap;
             .radio-item {
               font-size: 20px;
               font-weight: 700;
@@ -301,6 +304,53 @@ $primary-color: #353535;
           cursor: not-allowed;
         }
       }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .contact-pop-up {
+    .contact-pop-up-container {
+      padding: 32px 16px;
+      width: calc(100% - 32px);
+      gap: 24px;
+      .close-btn {
+        top: 38px;
+        right: 16px;
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+      }
+      .contact-pop-up-title {
+        font-size: 24px;
+      }
+      .contact-pop-up-form {
+        gap: 32px;
+        .form-group {
+          gap: 16px;
+          .contact-pop-up-form-item-title {
+            font-size: 20px;
+            margin-bottom: 0;
+          }
+          .contact-pop-up-form-item {
+            gap: 8px;
+            flex-direction: column;
+            label {
+              width: 100%;
+            }
+            input {
+              width: 100%;
+              box-sizing: border-box;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  .contact-pop-up-form-submit {
+    .submit-btn {
+      width: 100% !important;
     }
   }
 }
