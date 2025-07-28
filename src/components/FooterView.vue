@@ -37,6 +37,7 @@ $primary-color: #353535;
   width: 100%;
   height: 208px;
   background-color: #FAFAFA;
+  box-sizing: border-box;
   .footer-container {
     display: flex;
     align-items: center;
@@ -46,6 +47,7 @@ $primary-color: #353535;
     max-width: 1196px;
     padding: 0 16px;
     margin: 0 auto;
+    box-sizing: border-box;
   }
   .logo {
     width: 178px;
@@ -84,6 +86,35 @@ $primary-color: #353535;
         img {
           width: 16px;
         }
+      }
+    }
+  }
+}
+@media (max-width: 860px) {
+  .footer-view {
+    height: auto;
+    padding: 48px  55px;
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .footer-view {
+    .footer-container {
+      padding: 0;
+      margin: 0;
+      .footer-info {
+        gap: 12px;
+      }
+      .footer-info-contact {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
       }
     }
   }

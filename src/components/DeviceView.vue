@@ -101,4 +101,45 @@ $primary-color: #353535;
     }
   }
 }
+@media (max-width: 768px) {
+  .device-view {
+    padding: 70px 16px;
+    box-sizing: border-box;
+    gap: 50px;
+    .device-view-imgs {
+      padding-top: 0;
+      gap: 9px;
+      img {
+        &:nth-child(1) {
+          width: 71px;
+        }
+        &:nth-child(2) {
+          width: 131px;
+        }
+
+      }
+      .device-view-imgs-little {
+        gap: 23px;
+        img {
+          &:nth-child(1) {
+            width: 82px;
+          }
+          &:nth-child(2) {
+            width: 75px;
+          }
+          &:nth-child(3) {
+            width: 50px;
+          }
+        }
+      }
+    }
+    .device-view-title {
+      font-size: 24px;
+    }
+    .device-view-description {
+      font-size: 16px;
+    }
+  }
+
+}
 </style>

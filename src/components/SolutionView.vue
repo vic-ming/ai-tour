@@ -1,8 +1,9 @@
 <template>
   <div id="usecase-section" class="solution-view">
-    <div class="space-ai-view-container container">
+    <div class="solution-view-container container">
       <div class="solution-view-title" data-aos="fade-up">
-        {{ $t('solution.title') }}
+        <div v-if="isMobile" v-html="$t('solution.mobileTitle')"></div>
+        <div v-else>{{ $t('solution.title') }}</div>
       </div>
       <div class="solution-view-description" data-aos="fade-up" data-aos-delay="100">
         {{ $t('solution.description') }}
@@ -46,7 +47,7 @@
   </div>
 </template>
 <script setup>
-import { defineEmits } from 'vue'
+import { defineEmits, ref, onMounted } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Mousewheel, Autoplay, FreeMode } from 'swiper/modules'
 import solution1 from '@/assets/images/solution_1.webp'
@@ -55,6 +56,14 @@ import solution3 from '@/assets/images/solution_3.webp'
 import solution4 from '@/assets/images/solution_4.webp'
 import solution5 from '@/assets/images/solution_5.webp'
 
+
+const isMobile = ref(false);
+onMounted(() => {
+  isMobile.value = window.innerWidth <= 768;
+  window.addEventListener('resize', () => {
+    isMobile.value = window.innerWidth <= 768;
+  });
+});
 // 引入模塊
 const modules = [Mousewheel, Autoplay, FreeMode]
 
@@ -88,8 +97,9 @@ $primary-color: #353535;
 .solution-view {
   padding: 60px 0;
   background-color: #fafafa;
-  .space-ai-view-container {
+  .solution-view-container {
     margin-bottom: 57px;
+    box-sizing: border-box;
     .solution-view-title {
       font-size: 40px;
       font-weight: 700;
@@ -127,6 +137,9 @@ $primary-color: #353535;
       color: white;
       height: 300px;
       position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
 
       .slide-content-title {
         font-size: 24px;
@@ -190,6 +203,48 @@ $primary-color: #353535;
 @media (max-width: 1196px) {
   .solution-swiper {
     padding: 0 16px;
+  }
+}
+@media (max-width: 768px) {
+  .solution-view {
+    padding: 48px 0;
+    .solution-view-container {
+      margin-bottom: 32px;
+      gap: 12px;
+      .solution-view-title {
+        font-size: 24px;
+      }
+      .solution-view-description {
+        font-size: 18px;
+      }
+    }
+    .solution-swiper {
+      padding: 0 16px;
+      .slide-content {
+        width: 320px;
+        gap: 16px;
+        .slide-content-img {
+          height: 203px;
+          box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+
+          .slide-content-title{
+            font-size: 18px;
+            bottom: 18px;
+            left: 21px;
+          }
+        }
+        .slide-content-description {
+          font-size: 14px;
+        }
+        .slide-content-play-mask {
+          font-size: 18px;
+          img {
+            width: 60px;
+            height: 60px;
+          }
+        }
+      }
+    }
   }
 }
 </style>

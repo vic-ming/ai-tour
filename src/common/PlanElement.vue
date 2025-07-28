@@ -3,7 +3,7 @@
     <!-- 租期 -->
     <div class="price-rent-plan-element-title">
       <span v-if="type === 'rent'">{{ $t('plan.rent') }}</span>
-      <span class="price-rent-plan-element-title-text">{{ plan.days }} {{ type === 'rent' ? $t('plan.days') : $t('plan.touch') }}</span>
+      <span class="price-rent-plan-element-title-text">{{ plan.days }} {{ type === 'rent' ? plan.days === '3 個月' ? '' : $t('plan.days') : $t('plan.touch') }}</span>
     </div>
     <!-- 硬體尺寸 -->
     <div v-if="type === 'rent'" class="price-rent-plan-element-device-size">
@@ -264,6 +264,16 @@ $primary-color: #353535;
         }
       }
     }
+  }
+}
+@media (max-width: 1196px) {
+  .price-rent-plan-element {
+    padding: 24px 10px;
+  }
+}
+@media (max-width: 820px) {
+  .price-rent-plan-element {
+    padding: 32px 24px;
   }
 }
 </style>

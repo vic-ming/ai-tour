@@ -181,6 +181,7 @@ export default {
     totalCost: 'Total Price',
     inches: 'Inches',
     month: 'mo.',
+    months: 'Months',
     touch: '“Touchscreen',
     annualFee: 'Annual Fee',
     sizes: {
@@ -201,8 +202,8 @@ export default {
       placeholder: 'Please fill in'
     },
     requirements: 'Rental & Plan Preferences',
-    deviceType: 'AI Guide Device Model Selection',
-    rentDuration: 'Rental Duration / Annual Contract (or Purchase)',
+    deviceType: 'AI Tour Device Model',
+    rentDuration: 'Rental Duration / Annual Contract (Buyout Option)',
     memberPlan: 'Membership Plan',
     options: {
       durations: {

@@ -69,6 +69,8 @@ $primary-color: #353535;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    box-sizing: border-box;
+    overflow: auto;
     .add-on-view-title {
       font-size: 20px;
       font-weight: 700;

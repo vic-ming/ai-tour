@@ -1,11 +1,14 @@
 <template>
   <div class="header-view">
     <div class="header-container">
+      <div class="header-view-mobile">
+        <!-- mobile menu -->
+        <img src="@/assets/images/icon_menu.svg" alt="menu" class="icon-menu cursor-opacity" @click="toggleMenu" v-if="isMobile">
+        <!-- logo -->
+        <img src="@/assets/images/logo.svg" alt="logo" class="logo cursor-opacity">
+      </div>
 
-
-      <img src="@/assets/images/logo.svg" alt="logo" class="logo cursor-opacity">
-
-      <div class="header-view-menu">
+      <div class="header-view-menu" v-if="!isMobile">
         <!-- <a href="#usecase-section" @click="scrollToUseCase">{{ $t('common.menu.useCase') }}</a>
         <a href="#features-section" @click="scrollToFeatures">{{ $t('common.menu.features') }}</a> -->
         <a href="#">{{ $t('common.menu.useCase') }}</a>
@@ -34,13 +37,32 @@
         </div>
       </div>
     </div>
+
+
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { defineEmits } from 'vue'
+
+const emit = defineEmits(['openMobileMenuPopUp'])
+
 const { locale } = useI18n()
 const isLanguageListOpen = ref(false)
+
+const isMobile = ref(false)
+
+onMounted(() => {
+  checkIsMobile()
+  window.addEventListener('resize', checkIsMobile)
+})
+
+
+const checkIsMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+  console.log('isMobile', isMobile.value)
+}
 
 const toggleLanguageList = () => {
   isLanguageListOpen.value = !isLanguageListOpen.value
@@ -56,27 +78,27 @@ const changeLanguage = (language) => {
   console.log('Language changed to:', language)
 }
 
-const scrollToUseCase = (event) => {
-  event.preventDefault()
-  const useCaseSection = document.getElementById('usecase-section')
-  if (useCaseSection) {
-    useCaseSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
-  }
-}
+// const scrollToUseCase = (event) => {
+//   event.preventDefault()
+//   const useCaseSection = document.getElementById('usecase-section')
+//   if (useCaseSection) {
+//     useCaseSection.scrollIntoView({
+//       behavior: 'smooth',
+//       block: 'start'
+//     })
+//   }
+// }
 
-const scrollToFeatures = (event) => {
-  event.preventDefault()
-  const featuresSection = document.getElementById('features-section')
-  if (featuresSection) {
-    featuresSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    })
-  }
-}
+// const scrollToFeatures = (event) => {
+//   event.preventDefault()
+//   const featuresSection = document.getElementById('features-section')
+//   if (featuresSection) {
+//     featuresSection.scrollIntoView({
+//       behavior: 'smooth',
+//       block: 'start'
+//     })
+//   }
+// }
 
 const scrollToPrice = (event) => {
   event.preventDefault()
@@ -99,6 +121,10 @@ const scrollToContact = (event) => {
     })
   }
 }
+
+const toggleMenu = () => {
+  emit('openMobileMenuPopUp')
+}
 </script>
 <style lang="scss" scoped>
 .header-view {
@@ -119,6 +145,15 @@ const scrollToContact = (event) => {
     max-width: 1196px;
     padding: 0 16px;
     margin: 0 auto;
+  }
+  .header-view-mobile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .icon-menu {
+    width: 24px;
+    cursor: pointer;
   }
   .logo {
     width: 167px;
@@ -148,7 +183,7 @@ const scrollToContact = (event) => {
     .header-view-language-list {
       position: absolute;
       top: 30px;
-      right: -30px;
+      right: -10px;
       background-color: #fff;
       border-radius: 8px;
       overflow: hidden;
@@ -174,5 +209,15 @@ const scrollToContact = (event) => {
     }
   }
 
+}
+@media (max-width: 768px) {
+  .header-view {
+    height: 60px;
+    .header-view-mobile {
+      .logo {
+        width: 89px;
+      }
+    }
+  }
 }
 </style>

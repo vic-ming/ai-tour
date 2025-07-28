@@ -52,7 +52,7 @@ const rentPlanList = [
     ]
   },
   {
-    days: '7',
+    days: '30',
     device_size: ['32', '55'],
     device_price: 9000,
     plan: [
@@ -69,7 +69,7 @@ const rentPlanList = [
     ]
   },
   {
-    days: '30',
+    days: '3 個月',
     device_size: ['32', '55'],
     device_price: 15000,
     plan: [
@@ -140,6 +140,7 @@ $primary-color: #353535;
     align-items: center;
     justify-content: center;
     gap: 60px;
+    box-sizing: border-box;
     .price-view-title {
       font-size: 48px;
       font-weight: 700;
@@ -202,5 +203,77 @@ $primary-color: #353535;
 
   }
 
+}
+@media (max-width: 1196px) {
+  .price-view {
+    .price-view-container {
+      .price-view-rent {
+        .price-rent-plan-list {
+          gap: 20px;
+        }
+      }
+      .price-view-buy {
+        .price-buy-plan-list {
+          gap: 20px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 940px) {
+  .price-view {
+    .price-view-container {
+      .price-view-rent {
+        .price-rent-plan-list {
+          gap: 10px;
+        }
+      }
+      .price-view-buy {
+        .price-buy-plan-list {
+          gap: 10px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 820px) {
+  .price-view {
+    .price-view-container {
+      .price-view-rent {
+        .price-rent-plan-list {
+          grid-template-columns: repeat(1, 1fr);
+          gap: 12px;
+          .price-rent-plan-list-item {
+            max-width: 400px;
+            margin: 0 auto;
+          }
+        }
+      }
+      .price-view-buy {
+        .price-buy-plan-list {
+          flex-direction: column;
+          gap: 12px;
+          .price-buy-plan-list-item {
+            max-width: 400px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .price-view {
+    padding: 48px 0;
+
+    .price-view-container {
+      gap: 32px;
+      .price-view-title {
+        font-size: 32px;
+      }
+      .price-view-buy-text {
+        width: 230px;
+      }
+    }
+  }
 }
 </style>

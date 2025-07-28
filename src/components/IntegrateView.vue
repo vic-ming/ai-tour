@@ -53,6 +53,7 @@ $primary-color: #353535;
     display: flex;
     flex-direction: column;
     gap: 57px;
+    box-sizing: border-box;
     .integrate-view-title {
       display: flex;
       flex-direction: column;
@@ -97,6 +98,8 @@ $primary-color: #353535;
         gap: 8px;
         box-sizing: border-box;
         color: #fff;
+        box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+
         .integrate-view-content-item-title {
           font-size: 20px;
           font-weight: 700;
@@ -111,5 +114,40 @@ $primary-color: #353535;
     }
   }
 }
-
+@media (max-width: 980px) {
+  .integrate-view {
+    .integrate-view-container {
+      .integrate-view-title {
+        span:last-child {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .integrate-view {
+    padding: 48px 0;
+    .integrate-view-container {
+      gap: 32px;
+      .integrate-view-title {
+        span:first-child {
+          font-size: 20px;
+        }
+        span:last-child {
+          font-size: 24px;
+        }
+      }
+      .integrate-view-content {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 24px;
+        .integrate-view-content-item {
+          margin: 0 auto;
+          max-width: 450px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 </style>

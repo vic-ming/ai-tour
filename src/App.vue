@@ -1,6 +1,6 @@
 <template>
   <!-- Header -->
-  <HeaderView />
+  <HeaderView @openMobileMenuPopUp="showMobileMenuPopUp = true" />
   <!-- Main -->
   <main>
     <!-- Banner -->
@@ -34,6 +34,8 @@
   <ContactPopUp v-model="showContactPopUp" />
   <!-- Video Pop Up -->
   <VideoPopUp v-model="showVideoPopUp" />
+  <!-- Mobile Menu Pop Up -->
+  <MobileMenuPopUp v-model="showMobileMenuPopUp" />
 </template>
 <script setup>
 import { ref } from 'vue'
@@ -50,9 +52,11 @@ import DeviceView from '@/components/DeviceView.vue'
 import PriceView from '@/components/PriceView.vue'
 import AddOnView from '@/components/AddOnView.vue'
 import ContactView from '@/components/ContactView.vue'
-import ContactPopUp from '@/common/ContactPopUp.vue'
+import ContactPopUp from '@/common/ContactPopup.vue'
 import VideoPopUp from '@/common/VideoPopUp.vue'
+import MobileMenuPopUp from '@/common/MobileMenuPopup.vue'
 
 const showContactPopUp = ref(false)
 const showVideoPopUp = ref(false)
+const showMobileMenuPopUp = ref(false)
 </script>

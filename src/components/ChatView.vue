@@ -92,10 +92,9 @@
   .chat-view-video {
     position: absolute;
     top: 36px;
-    right: 0;
+    right: -9vw;
     video {
-      width: 820px;
-
+      width: 57vw;
       object-fit: cover;
     }
   }
@@ -113,6 +112,50 @@
   100% {
     transform: translate(-50%, -50%) scale(1.4);
     opacity: 0;
+  }
+}
+@media (max-width: 1196px) {
+  .chat-view {
+    .chat-view-circle {
+      right: 110px;
+      .chat-view-circle-content {
+        width: 400px;
+        height: 400px;
+      }
+    }
+    .chat-view-video {
+      right: -7vw;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .chat-view {
+    align-items: flex-start;
+    height: 711px;
+    .chat-view-circle {
+      right: 0;
+      margin-top: 87px;
+      .chat-view-circle-content {
+        width: 247px;
+        height: 247px;
+        .chat-view-circle-content-title {
+          font-size: 32px;
+          width: 163px;
+        }
+        .chat-view-circle-content-description {
+          font-size: 16px;
+          width: 163px;
+        }
+      }
+    }
+    .chat-view-video {
+      right: calc(50% - 213px);
+      bottom: -385px;
+      top: auto;
+      video {
+        width: 427px
+      }
+    }
   }
 }
 </style>

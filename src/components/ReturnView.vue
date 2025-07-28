@@ -8,7 +8,7 @@
       <div class="return-view-content-list" :class="{ 'return-view-content-list-en': !isZH }">
         <div class="return-view-content-list-item" v-for="(item, index) in returnViewList" :key="item.key" data-aos="fade-up" :data-aos-delay="index * 200">
           <div class="return-view-content-list-item-icon">
-            <img :src="item.icon" alt="return-view-content-list-item-icon">
+            <img :src="item.icon" alt="return-view-content-list-item-icon-img" class="return-view-content-list-item-icon-img">
           </div>
           <div class="return-view-content-list-item-percent">
             {{ item.percent }}
@@ -63,14 +63,17 @@ $primary-color: #353535;
   background-size: 100% 425px;
   background-position: top;
   background-repeat: no-repeat;
+  overflow: hidden;
   .return-view-container {
+    box-sizing: border-box;
+    padding: 0;
     .return-view-content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
       gap: 12px;
-      padding-top: 103px;
+      padding: 103px 16px 0;
       .return-view-title {
         font-size: 48px;
         font-weight: 700;
@@ -87,7 +90,7 @@ $primary-color: #353535;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      padding-top: 87.5px;
+      padding: 87.5px 16px 0;
       &.return-view-content-list-en {
        padding-top: 72px;
       }
@@ -100,9 +103,15 @@ $primary-color: #353535;
         background-color: #fff;
         border-radius: 16px;
         padding: 48px 32px;
+        min-width: 300px;
         .return-view-content-list-item-icon {
           width: 115px;
           height: 115px;
+        }
+        .return-view-content-list-item-icon-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         .return-view-content-list-item-percent {
 
@@ -143,6 +152,71 @@ $primary-color: #353535;
           }
         }
       }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .return-view {
+    padding: 48px 0;
+    height: auto;
+    background-size: 100% 200px;
+    .return-view-container {
+      .return-view-content {
+        align-items: center;
+        padding-top: 0px;
+        .return-view-title {
+          font-size: 32px;
+        }
+        .return-view-description {
+          font-size: 18px;
+        }
+      }
+      .return-view-content-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 19px;
+        padding-top: 32px;
+        overflow: auto;
+        scrollbar-width: none;
+
+        .return-view-content-list-item {
+          height: 304px;
+          width: 300px;
+          padding: 0;
+          gap: 8px;
+          .return-view-content-list-item-icon {
+            width: 80px;
+            height: 80px;
+          }
+          .return-view-content-list-item-icon-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          }
+          .return-view-content-list-item-percent {
+            font-size: 40px;
+          }
+          .return-view-content-list-item-text {
+            font-size: 16px;
+          }
+          .return-view-content-list-item-dots {
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .return-view {
+    .return-view-container {
+      .return-view-content {
+        .return-view-description {
+          font-size: 18px;
+          width: 252px;
+          text-align: center;
+        }
+      }
+
     }
   }
 }

@@ -46,6 +46,7 @@ export default {
   // SolutionView 解決方案組件
   solution: {
     title: '迎接 AI 時代的智慧場域互動解決方案',
+    mobileTitle: '迎接 AI 時代的<br>智慧場域互動解決方案',
     description: '為各類空間打造高效導覽與沉浸式體驗',
     cases: {
       exhibition: {
@@ -181,6 +182,7 @@ export default {
     totalCost: '總費用',
     inches: '吋',
     month: '月',
+    months: '個月',
     touch: '吋觸控',
     annualFee: '年費',
     sizes: {

@@ -25,14 +25,25 @@
         </div>
         <div class="space-ai-view-box-description">{{ $t('spaceAI.features.recommendation.description') }}</div>
       </div>
+      <div class="space-ai-view-machine-container" v-if="isMobile">
+        <img src="@/assets/images/space_ai_machine.webp" alt="space-ai" class="space-ai-view-machine">
+      </div>
     </div>
   </div>
 </template>
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { computed } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 const { locale } = useI18n();
 const isZH = computed(() => locale.value === 'zh-TW');
+const isMobile = ref(false);
+onMounted(() => {
+  isMobile.value = window.innerWidth <= 768;
+  window.addEventListener('resize', () => {
+    isMobile.value = window.innerWidth <= 768;
+  });
+});
+
 </script>
 <style lang="scss" scoped>
 $primary-color: #353535;
@@ -46,7 +57,9 @@ $primary-color: #353535;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
   .space-ai-view-container {
+    box-sizing: border-box;
     .space-ai-view-title {
       font-size: 40px;
       font-weight: 700;
@@ -102,6 +115,72 @@ $primary-color: #353535;
         color: #fff;
         line-height: 1.5;
       }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .space-ai-view {
+    min-height: 840px;
+    background-image: url('@/assets/images/space_ai_bg_mobile.webp');
+    justify-content: flex-start;
+    overflow: hidden;
+    .space-ai-view-container {
+      padding: 50px 33px 0;
+      box-sizing: border-box;
+      .space-ai-view-title {
+        font-size: 24px;
+      }
+      .space-ai-view-box {
+        margin-bottom: 28px;
+        padding: 16px;
+        box-sizing: border-box;
+        position: relative;
+        &:nth-child(1) {
+          left: 0;
+        }
+        &:nth-child(2) {
+          left: 81px;
+        }
+        &:nth-child(3) {
+          left: -15px;
+        }
+        &:nth-child(4) {
+          left: 81px;
+        }
+
+
+      }
+    }
+    .space-ai-view-machine-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .space-ai-view-machine {
+      width: 172px;
+      margin: 50px auto 0;
+      position: relative;
+      top: 4px;
+      left: 0;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .space-ai-view {
+
+    .space-ai-view-container {
+
+      .space-ai-view-box {
+        width: 327px;
+        .space-ai-view-box-title {
+          font-size: 18px;
+        }
+        .space-ai-view-box-description {
+          font-size: 14px;
+        }
+      }
+
     }
   }
 }

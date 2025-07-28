@@ -143,15 +143,20 @@ $primary-color: #353535;
 .advantages-view {
   padding: 60px 0;
   background-color: #fff;
+  overflow: hidden;
   .advantages-view-container {
     display: flex;
     flex-direction: column;
     gap: 48px;
+    box-sizing: border-box;
     .advantages-view-tabs {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 48px;
+      overflow: auto;
+      width: 100%;
+      scrollbar-width: none;
 
       .advantages-view-tab {
         display: flex;
@@ -159,6 +164,7 @@ $primary-color: #353535;
         justify-content: center;
         gap: 12px;
         cursor: pointer;
+        text-wrap-mode: nowrap;
         .advantages-view-tab-icon {
           width: 40px;
           height: 40px;
@@ -183,6 +189,7 @@ $primary-color: #353535;
       flex-direction: column;
       gap: 48px;
 
+
       // Transition 動畫樣式
       .content-fade-enter-active,
       .content-fade-leave-active {
@@ -203,6 +210,7 @@ $primary-color: #353535;
         display: flex;
         flex-direction: column;
         gap: 48px;
+
       }
 
       .advantages-view-content-description {
@@ -216,6 +224,8 @@ $primary-color: #353535;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 24px;
+        overflow: auto;
+        scrollbar-width: none;
         .advantages-view-content-item {
           display: flex;
           align-items: center;
@@ -240,5 +250,51 @@ $primary-color: #353535;
     }
   }
 }
-
+@media (max-width: 980px) {
+  .advantages-view {
+    .advantages-view-container {
+      .advantages-view-tabs {
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .advantages-view {
+    padding: 48px 0;
+    .advantages-view-container {
+      gap: 40px;
+      .advantages-view-tabs {
+        gap: 24px;
+        .advantages-view-tab {
+          gap: 8px;
+          .advantages-view-tab-icon {
+            width: 32px;
+            height: 32px;
+          }
+          .advantages-view-tab-title {
+            font-size: 24px;
+          }
+        }
+      }
+      .advantages-view-content {
+        gap: 40px;
+        .advantages-view-content-wrapper {
+          gap: 40px;
+        }
+        .advantages-view-content-description {
+          font-size: 16px;
+        }
+        .advantages-view-content-items {
+          gap: 24px;
+          .advantages-view-content-item {
+            .advantages-view-content-item-text {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>
