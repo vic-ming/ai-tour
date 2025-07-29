@@ -69,7 +69,7 @@ const rentPlanList = [
     ]
   },
   {
-    days: '3 個月',
+    months: '3',
     device_size: ['32', '55'],
     device_price: 15000,
     plan: [
@@ -134,6 +134,7 @@ $primary-color: #353535;
   width: 100%;
   position: relative;
   padding: 60px 0;
+  overflow: hidden;
   .price-view-container {
     display: flex;
     flex-direction: column;
@@ -236,7 +237,7 @@ $primary-color: #353535;
     }
   }
 }
-@media (max-width: 820px) {
+@media (max-width: 880px) {
   .price-view {
     .price-view-container {
       .price-view-rent {

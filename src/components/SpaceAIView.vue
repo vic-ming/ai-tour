@@ -1,7 +1,7 @@
 <template>
-  <div id="features-section" class="space-ai-view">
+  <div class="space-ai-view">
     <div class="space-ai-view-container container">
-      <div class="space-ai-view-title" data-aos="fade-up">
+      <div class="space-ai-view-title" data-aos="fade-up" :class="{ 'space-ai-view-title-en': !isZH }">
         {{ $t('spaceAI.title') }}<br>{{ $t('spaceAI.subtitle') }}
       </div>
       <div class="space-ai-view-box" :class="{ 'space-ai-view-box-en': !isZH }" data-aos="fade-right" data-aos-delay="200">
@@ -67,6 +67,9 @@ $primary-color: #353535;
       line-height: 1.5;
       margin-bottom: 20px;
     }
+    .space-ai-view-title-en {
+      font-size: 32px;
+    }
     .space-ai-view-box {
       display: flex;
       flex-direction: column;
@@ -87,15 +90,7 @@ $primary-color: #353535;
         position: relative;
         left: 104px;
       }
-      &.space-ai-view-box-en {
-        width: 570px;
-        &:nth-child(3) {
-          width: 545px;
-        }
-        &:nth-child(4) {
-          width: 582px;
-        }
-      }
+
       .space-ai-view-box-title {
         display: flex;
         align-items: center;
@@ -114,6 +109,21 @@ $primary-color: #353535;
         font-weight: 400;
         color: #fff;
         line-height: 1.5;
+      }
+      &.space-ai-view-box-en {
+        width: 570px;
+        .space-ai-view-box-title{
+          font-size: 20px;
+        }
+        .space-ai-view-box-description {
+          font-size: 14px;
+        }
+        &:nth-child(3) {
+          width: 545px;
+        }
+        &:nth-child(4) {
+          width: 582px;
+        }
       }
     }
   }
@@ -146,6 +156,12 @@ $primary-color: #353535;
         }
         &:nth-child(4) {
           left: 81px;
+        }
+        &.space-ai-view-box-en {
+          width: 80% !important;
+          .space-ai-view-box-title{
+            font-size: 18px;
+          }
         }
 
 

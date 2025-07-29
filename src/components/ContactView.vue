@@ -2,11 +2,11 @@
   <div id="contact-section" class="contact-view">
     <div class="contact-view-container container">
       <div class="contact-view-content">
-        <div class="contact-view-title" data-aos="fade-up">
+        <div class="contact-view-title" data-aos="fade-up" :class="{ 'contact-view-title-en': !isZH }">
           <span>{{ $t('contact.title') }}</span>
           <img src="@/assets/images/hot.svg" alt="hot-icon">
         </div>
-        <div class="contact-view-description" data-aos="fade-up" data-aos-delay="100" v-html="$t('contact.description')"></div>
+        <div class="contact-view-description" data-aos="fade-up" data-aos-delay="100" :class="{ 'contact-view-description-en': !isZH }" v-html="$t('contact.description')"></div>
       </div>
       <div  data-aos="fade-up" data-aos-delay="200">
         <button class="contact-view-button" @click="emit('openContactPopUp')">
@@ -24,8 +24,10 @@
   </div>
 </template>
 <script setup>
-import { defineEmits } from 'vue'
-
+import { computed, defineEmits } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+const isZH = computed(() => locale.value === 'zh-TW')
 const emit = defineEmits(['openContactPopUp'])
 </script>
 <style lang="scss" scoped>
@@ -61,12 +63,18 @@ $primary-color: #353535;
       color: $primary-color;
       line-height: 1.5;
     }
+    .contact-view-title-en {
+      font-size: 30px;
+    }
     .contact-view-description {
       margin-top: 12px;
       font-size: 40px;
       font-weight: 700;
       line-height: 1.5;
       color: $primary-color;
+    }
+    .contact-view-description-en {
+      font-size: 24px;
     }
     .contact-view-button {
       background: #FDDD59;
@@ -223,6 +231,7 @@ $primary-color: #353535;
       gap: 32px;
       .contact-view-title{
         font-size: 32px;
+        flex-wrap: wrap;
       }
       .contact-view-description{
         font-size: 24px;

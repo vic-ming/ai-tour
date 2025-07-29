@@ -9,10 +9,10 @@
           </div>
           <div class="mobile-menu-popup-content">
             <div class="mobile-menu-popup-content-item">
-              <a href="#">{{ $t('common.menu.useCase') }}</a>
+              <a href="#usecase-section" @click="scrollToUseCase">{{ $t('common.menu.useCase') }}</a>
             </div>
             <div class="mobile-menu-popup-content-item">
-              <a href="#">{{ $t('common.menu.features') }}</a>
+              <a href="#features-section" @click="scrollToFeatures">{{ $t('common.menu.features') }}</a>
             </div>
             <div class="mobile-menu-popup-content-item" @click="scrollToPrice">
               <a href="#price-section">{{ $t('common.menu.pricing') }}</a>
@@ -57,35 +57,40 @@ watch(() => props.modelValue, (newValue) => {
 
 
 
-// const scrollToUseCase = (event) => {
-//   event.preventDefault()
-//   const useCaseSection = document.getElementById('usecase-section')
-//   if (useCaseSection) {
-//     useCaseSection.scrollIntoView({
-//       behavior: 'smooth',
-//       block: 'start'
-//     })
-//   }
-// }
+const scrollToUseCase = (event) => {
+  event.preventDefault()
+  const useCaseSection = document.getElementById('usecase-section')
+  if (useCaseSection) {
+    const elementTop = useCaseSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 60,
+      behavior: 'smooth'
+    })
+  }
+  close()
+}
 
-// const scrollToFeatures = (event) => {
-//   event.preventDefault()
-//   const featuresSection = document.getElementById('features-section')
-//   if (featuresSection) {
-//     featuresSection.scrollIntoView({
-//       behavior: 'smooth',
-//       block: 'start'
-//     })
-//   }
-// }
+const scrollToFeatures = (event) => {
+  event.preventDefault()
+  const featuresSection = document.getElementById('features-section')
+  if (featuresSection) {
+    const elementTop = featuresSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 60,
+      behavior: 'smooth'
+    })
+  }
+  close()
+}
 
 const scrollToPrice = (event) => {
   event.preventDefault()
   const priceSection = document.getElementById('price-section')
   if (priceSection) {
-    priceSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+    const elementTop = priceSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 60,
+      behavior: 'smooth'
     })
   }
   close()
@@ -95,9 +100,10 @@ const scrollToContact = (event) => {
   event.preventDefault()
   const contactSection = document.getElementById('contact-section')
   if (contactSection) {
-    contactSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+    const elementTop = contactSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 60,
+      behavior: 'smooth'
     })
   }
   close()

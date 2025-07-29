@@ -9,10 +9,8 @@
       </div>
 
       <div class="header-view-menu" v-if="!isMobile">
-        <!-- <a href="#usecase-section" @click="scrollToUseCase">{{ $t('common.menu.useCase') }}</a>
-        <a href="#features-section" @click="scrollToFeatures">{{ $t('common.menu.features') }}</a> -->
-        <a href="#">{{ $t('common.menu.useCase') }}</a>
-        <a href="#">{{ $t('common.menu.features') }}</a>
+        <a href="#usecase-section" @click="scrollToUseCase">{{ $t('common.menu.useCase') }}</a>
+        <a href="#features-section" @click="scrollToFeatures">{{ $t('common.menu.features') }}</a>
         <a href="#price-section" @click="scrollToPrice">{{ $t('common.menu.pricing') }}</a>
         <a href="#contact-section" @click="scrollToContact">{{ $t('common.menu.contact') }}</a>
       </div>
@@ -78,35 +76,38 @@ const changeLanguage = (language) => {
   console.log('Language changed to:', language)
 }
 
-// const scrollToUseCase = (event) => {
-//   event.preventDefault()
-//   const useCaseSection = document.getElementById('usecase-section')
-//   if (useCaseSection) {
-//     useCaseSection.scrollIntoView({
-//       behavior: 'smooth',
-//       block: 'start'
-//     })
-//   }
-// }
+const scrollToUseCase = (event) => {
+  event.preventDefault()
+  const useCaseSection = document.getElementById('usecase-section')
+  if (useCaseSection) {
+    const elementTop = useCaseSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 100,
+      behavior: 'smooth'
+    })
+  }
+}
 
-// const scrollToFeatures = (event) => {
-//   event.preventDefault()
-//   const featuresSection = document.getElementById('features-section')
-//   if (featuresSection) {
-//     featuresSection.scrollIntoView({
-//       behavior: 'smooth',
-//       block: 'start'
-//     })
-//   }
-// }
+const scrollToFeatures = (event) => {
+  event.preventDefault()
+  const featuresSection = document.getElementById('features-section')
+  if (featuresSection) {
+    const elementTop = featuresSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 100,
+      behavior: 'smooth'
+    })
+  }
+}
 
 const scrollToPrice = (event) => {
   event.preventDefault()
   const priceSection = document.getElementById('price-section')
   if (priceSection) {
-    priceSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+    const elementTop = priceSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 100,
+      behavior: 'smooth'
     })
   }
 }
@@ -115,9 +116,10 @@ const scrollToContact = (event) => {
   event.preventDefault()
   const contactSection = document.getElementById('contact-section')
   if (contactSection) {
-    contactSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+    const elementTop = contactSection.offsetTop
+    window.scrollTo({
+      top: elementTop - 100,
+      behavior: 'smooth'
     })
   }
 }

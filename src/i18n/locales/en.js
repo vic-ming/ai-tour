@@ -46,6 +46,7 @@ export default {
   // SolutionView Component
   solution: {
     title: 'Smart Interactive Solutions for the AI Era',
+    mobileTitle: 'Smart Interactive<br> Solutions for the AI Era',
     description: 'Efficient Navigation & Immersive Experiences Across All Spaces',
     cases: {
       exhibition: {
@@ -98,7 +99,7 @@ export default {
   // ReturnView Component
   return: {
     title: 'Maximize Marketing ROI',
-    description: 'Enhance service quality and operational efficiency across<br>exhibitions, events, and showrooms.',
+    description: 'Enhance service quality and operational efficiency across exhibitions, events, and showrooms.',
     metrics: {
       exploration: 'Increase in visitor dwell time',
       cost: 'Reduction in staffing costs',
@@ -115,7 +116,7 @@ export default {
   // ContactView Component
   contact: {
     title: 'AI Smart Guide Kiosk',
-    description: 'Communicate directly<br>with our customer<br>success manager about<br>your requirements'
+    description: 'Communicate directly with our<br>customer success manager about<br> your requirements'
   },
 
     // FooterView Component

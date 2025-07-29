@@ -3,17 +3,18 @@
     <!-- 租期 -->
     <div class="price-rent-plan-element-title">
       <span v-if="type === 'rent'">{{ $t('plan.rent') }}</span>
-      <span class="price-rent-plan-element-title-text">{{ plan.days }} {{ type === 'rent' ? plan.days === '3 個月' ? '' : $t('plan.days') : $t('plan.touch') }}</span>
+      <span v-if="plan.days" class="price-rent-plan-element-title-text" :class="{ 'price-rent-plan-element-title-text-en': !isZH }">{{ plan.days }} {{ type === 'rent' ? $t('plan.days') : $t('plan.touch') }}</span>
+      <span v-if="plan.months" class="price-rent-plan-element-title-text" :class="{ 'price-rent-plan-element-title-text-en': !isZH }">{{ plan.months }} {{ $t('plan.months') }}</span>
     </div>
     <!-- 硬體尺寸 -->
     <div v-if="type === 'rent'" class="price-rent-plan-element-device-size">
-      <div class="size-btn-list-item" v-for="size in plan.device_size" :key="size" :class="{ 'active': activeSize === size }" @click="activeSize = size">
+      <div class="size-btn-list-item" v-for="size in plan.device_size" :key="size" :class="{ 'active': activeSize === size, 'size-btn-list-item-en': !isZH }" @click="activeSize = size">
         <span>{{ size }} {{ $t('plan.inches') }}</span>
       </div>
     </div>
     <!-- 硬體租金 -->
     <div class="price-rent-plan-element-price">
-      <span>{{ type === 'rent' ? $t('plan.hardwareRent') : $t('plan.buyPrice') }}</span>
+      <span :class="{ 'price-rent-plan-element-price-en': !isZH }">{{ type === 'rent' ? $t('plan.hardwareRent') : $t('plan.buyPrice') }}</span>
       <span>${{ amountFormat(plan.device_price) }}</span>
       <span>+</span>
     </div>
@@ -22,7 +23,7 @@
       <div class="price-rent-plan-element-plan-item" v-for="item in plan.plan" :key="item.name_en" :class="{ 'active': activePlan === item.name_en }" @click="activePlan = item.name_en">
         <div class="price-rent-plan-element-plan-item-name">
           <span>{{ item.name_en }}</span>
-          <span>{{ type === 'rent' ? item.name_zh : $t('plan.annualFee') }}</span>
+          <span>{{ type === 'rent' ? isZH ? item.name_zh : '' : $t('plan.annualFee') }}</span>
         </div>
         <div class="price-rent-plan-element-plan-item-price">
           <span :class="{ 'discount': item.discount }">${{ amountFormat(item.price) }} {{ type === 'rent' ? '/' + $t('plan.month') : '' }}</span>
@@ -45,7 +46,9 @@
 </template>
 <script setup>
 import { computed, ref } from 'vue';
-
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+const isZH = computed(() => locale.value === 'zh-TW')
 const props = defineProps({
   type: {
     type: String,
@@ -106,6 +109,9 @@ $primary-color: #353535;
     .price-rent-plan-element-title-text {
       font-size: 40px;
     }
+    .price-rent-plan-element-title-text-en {
+      font-size: 28px;
+    }
   }
   .price-rent-plan-element-device-size {
     display: flex;
@@ -130,6 +136,10 @@ $primary-color: #353535;
         box-shadow: 0 0 0 1px #FDDD59;
         background-color: rgba(253, 221, 89, 0.2);
       }
+      &.size-btn-list-item-en {
+        font-size: 16px;
+        padding: 12px 20px;
+      }
     }
   }
   .price-rent-plan-element-price {
@@ -151,6 +161,9 @@ $primary-color: #353535;
         font-size: 18px;
         font-weight: 700;
       }
+    }
+    .price-rent-plan-element-price-en {
+      font-size: 14px;
     }
   }
   .price-rent-plan-element-plans {
@@ -174,6 +187,9 @@ $primary-color: #353535;
       gap: 12px;
       transition: all 0.3s ease;
       position: relative;
+      height: 107px;
+      box-sizing: border-box;
+
       cursor: pointer;
       &:hover {
         opacity: 0.8;

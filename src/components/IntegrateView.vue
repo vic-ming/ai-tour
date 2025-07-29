@@ -1,5 +1,5 @@
 <template>
-  <div class="integrate-view">
+  <div class="integrate-view" id="features-section">
     <div class="integrate-view-container container">
       <div class="integrate-view-title" data-aos="fade-up">
         <span>{{ $t('integrate.title.brand') }}</span>

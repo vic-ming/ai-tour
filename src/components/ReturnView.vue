@@ -2,8 +2,8 @@
   <div class="return-view">
     <div class="return-view-container container">
       <div class="return-view-content" data-aos="fade-up">
-        <div class="return-view-title">{{ $t('return.title') }}</div>
-        <div class="return-view-description" v-html="$t('return.description')"></div>
+        <div class="return-view-title" :class="{ 'return-view-title-en': !isZH }">{{ $t('return.title') }}</div>
+        <div class="return-view-description" :class="{ 'return-view-description-en': !isZH }" v-html="$t('return.description')"></div>
       </div>
       <div class="return-view-content-list" :class="{ 'return-view-content-list-en': !isZH }">
         <div class="return-view-content-list-item" v-for="(item, index) in returnViewList" :key="item.key" data-aos="fade-up" :data-aos-delay="index * 200">
@@ -79,11 +79,15 @@ $primary-color: #353535;
         font-weight: 700;
         color: #fff;
       }
+      .return-view-title-en {
+        font-size: 40px;
+      }
       .return-view-description {
         font-size: 20px;
         font-weight: 700;
         line-height: 1.5;
         color: #fff;
+        text-align: left;
       }
     }
     .return-view-content-list {
@@ -159,7 +163,7 @@ $primary-color: #353535;
   .return-view {
     padding: 48px 0;
     height: auto;
-    background-size: 100% 200px;
+    background-size: 100% 40%;
     .return-view-container {
       .return-view-content {
         align-items: center;
@@ -169,6 +173,7 @@ $primary-color: #353535;
         }
         .return-view-description {
           font-size: 18px;
+          text-align: center;
         }
       }
       .return-view-content-list {
@@ -177,6 +182,9 @@ $primary-color: #353535;
         padding-top: 32px;
         overflow: auto;
         scrollbar-width: none;
+        &.return-view-content-list-en {
+          padding-top: 30px;
+        }
 
         .return-view-content-list-item {
           height: 304px;
@@ -210,10 +218,17 @@ $primary-color: #353535;
   .return-view {
     .return-view-container {
       .return-view-content {
+        .return-view-title-en {
+          font-size: 25px;
+          text-align: center;
+        }
         .return-view-description {
           font-size: 18px;
-          width: 252px;
           text-align: center;
+          width: 252px;
+        }
+        .return-view-description-en {
+          width: auto;
         }
       }
 

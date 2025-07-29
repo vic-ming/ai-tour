@@ -1,5 +1,5 @@
 <template>
-  <div id="usecase-section" class="solution-view">
+  <div class="solution-view" id="usecase-section">
     <div class="solution-view-container container">
       <div class="solution-view-title" data-aos="fade-up">
         <div v-if="isMobile" v-html="$t('solution.mobileTitle')"></div>

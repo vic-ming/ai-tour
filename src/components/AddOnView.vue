@@ -219,6 +219,11 @@ $primary-color: #353535;
         grid-template-columns: 80px 1fr 1fr;
         grid-template-rows: repeat(1, 1fr);
         width: 100%;
+        &:nth-child(3), &:nth-child(4) {
+          .add-on-table-mobile-item-td div{
+            text-align: left;
+          }
+        }
         .add-on-table-mobile-item-th {
           width: 80px;
           background-color: #FAFAFA;
@@ -275,11 +280,6 @@ $primary-color: #353535;
           }
           &:first-child {
             border-left: 1px solid #EAEAEA;
-          }
-          &:nth-child(2), &:nth-child(3) {
-            div{
-              text-align: left;
-            }
           }
 
 

@@ -2,10 +2,10 @@
   <div class="chat-view">
     <div class="chat-view-circle" data-aos="zoom-in">
       <div class="chat-view-circle-content">
-        <div class="chat-view-circle-content-title">
+        <div class="chat-view-circle-content-title" :class="{ 'chat-view-circle-content-title-en': !isZH }">
           {{ $t('chat.title') }}
         </div>
-        <div class="chat-view-circle-content-description">
+        <div class="chat-view-circle-content-description" :class="{ 'chat-view-circle-content-description-en': !isZH }">
           <span v-html="$t('chat.description')"></span>
         </div>
       </div>
@@ -14,12 +14,28 @@
       <div class="ripple ripple-3"></div>
     </div>
     <div class="chat-view-video">
-      <video src="@/assets/video/chat_video_1.webm" autoplay muted loop></video>
+      <video ref="videoRef" src="@/assets/video/chat_video.webm" autoplay muted loop @timeupdate="handleTimeUpdate"></video>
     </div>
   </div>
 </template>
 <script setup>
+import { ref } from 'vue'
 
+const videoRef = ref(null)
+
+const handleTimeUpdate = () => {
+  if (videoRef.value) {
+    const video = videoRef.value
+    const progress = video.currentTime / video.duration
+
+    // 當播放進度達到99%時重頭播放
+    if (progress >= 0.97) {
+      video.currentTime = 0
+    }
+  }
+}
+
+// 由於使用了Vue的事件綁定(@timeupdate)，不需要手動添加事件監聽器
 </script>
 <style lang="scss" scoped>
 .chat-view {
@@ -57,11 +73,17 @@
         text-align: center;
         width: 400px;
       }
+      .chat-view-circle-content-title-en {
+        font-size: 32px;
+      }
       .chat-view-circle-content-description {
         font-size: 20px;
         line-height: 1.5;
         color: #fff;
         text-align: center;
+      }
+      .chat-view-circle-content-description-en {
+        font-size: 16px;
       }
     }
     .ripple {
@@ -142,9 +164,15 @@
           font-size: 32px;
           width: 163px;
         }
+        .chat-view-circle-content-title-en {
+          font-size: 20px;
+        }
         .chat-view-circle-content-description {
           font-size: 16px;
           width: 163px;
+        }
+        .chat-view-circle-content-description-en {
+          font-size: 14px;
         }
       }
     }

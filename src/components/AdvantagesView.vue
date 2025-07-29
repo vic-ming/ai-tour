@@ -10,7 +10,7 @@
           @click="active_tab.index = index; active_tab.key = tab.key"
         >
           <img :src="active_tab.index === index ? tab.active_icon : tab.default_icon" alt="tab.title" class="advantages-view-tab-icon">
-          <div class="advantages-view-tab-title">
+          <div class="advantages-view-tab-title" :class="{ 'advantages-view-tab-title-en': !isZH }">
             {{ $t(`advantages.tabs.${tab.key}.title`) }}
           </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="advantages-view-content-items">
               <div class="advantages-view-content-item" v-for="(item, index) in tabs[active_tab.index].data" :key="index">
                 <img :src="item.img" alt="item.text" class="advantages-view-content-item-img">
-                <div class="advantages-view-content-item-text">
+                <div class="advantages-view-content-item-text" :class="{ 'advantages-view-content-item-text-en': !isZH }">
                   {{ $t(`advantages.tabs.${active_tab.key}.items.${item.key}`) }}
                 </div>
               </div>
@@ -176,6 +176,9 @@ $primary-color: #353535;
           color: #C4C4C4;
           line-height: 1.5;
         }
+        .advantages-view-tab-title-en {
+          font-size: 24px;
+        }
         &.active {
         .advantages-view-tab-title {
           color: $primary-color;
@@ -244,6 +247,10 @@ $primary-color: #353535;
             font-weight: 700;
             color: $primary-color;
             line-height: 1.5;
+            text-align: center;
+          }
+          .advantages-view-content-item-text-en {
+            font-size: 20px;
           }
         }
       }
