@@ -20,12 +20,13 @@
         <span class="bold">{{ activeSize === '32' ? amountFormat(plan.device_price[0]) : amountFormat(plan.device_price[1]) }}</span>
         <span class="bold">+</span>
       </span>
+      <span v-if="!activeSize && type === 'rent'">-</span>
       <span v-if="type === 'buy'">
         <span class="bold">$</span>
         <span class="bold">{{amountFormat(plan.device_price) }}</span>
         <span class="bold">+</span>
       </span>
-      <span v-else>-</span>
+
     </div>
     <!-- 方案 -->
     <div class="price-rent-plan-element-plans" :class="{ 'price-rent-plan-element-plans-buy': type === 'buy' }">
