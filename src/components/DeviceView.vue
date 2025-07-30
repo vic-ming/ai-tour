@@ -21,7 +21,7 @@ import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 const isZH = computed(() => locale.value === 'zh-TW')
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $primary-color: #353535;
 .device-view {
   background-image: url('@/assets/images/device-bg.webp');

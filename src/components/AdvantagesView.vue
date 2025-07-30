@@ -36,7 +36,8 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import user_active from '@/assets/images/user-active.svg'
 import user_gray from '@/assets/images/user-gray.svg'
 import map_active from '@/assets/images/map-active.svg'
@@ -59,6 +60,27 @@ import img_3_2 from '@/assets/images/advantages-3-2.webp'
 import img_3_3 from '@/assets/images/advantages-3-3.webp'
 import img_3_4 from '@/assets/images/advantages-3-4.webp'
 
+const { locale } = useI18n()
+const isZH = computed(() => locale.value === 'zh-TW')
+
+// 用於存儲定時器
+let autoSwitchInterval = null
+
+onMounted(() => {
+  // 每8秒自動切換到下一個 tab
+  autoSwitchInterval = setInterval(() => {
+    const nextIndex = (active_tab.value.index + 1) % tabs.length
+    active_tab.value.index = nextIndex
+    active_tab.value.key = tabs[nextIndex].key
+  }, 8000)
+})
+
+onUnmounted(() => {
+  // 清理定時器
+  if (autoSwitchInterval) {
+    clearInterval(autoSwitchInterval)
+  }
+})
 
 const tabs = [
   {

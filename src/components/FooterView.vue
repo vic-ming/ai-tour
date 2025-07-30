@@ -17,7 +17,7 @@
           </a>
           <a href="tel:+886-2-27188083">
             <img src="@/assets/images/icon_phone.svg" alt="phone" class="icon-phone">
-            +8862 27188083
+            +886-2-2718-8083
           </a>
           <a href="https://maps.app.goo.gl/t2pAecACbtgp35aPA" target="_blank">
             <img src="@/assets/images/icon_location.svg" alt="location" class="icon-location">

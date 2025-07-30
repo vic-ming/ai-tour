@@ -77,15 +77,15 @@ export default {
     features: {
       immersive: {
         title: '3D 沉浸式場景',
-        description: '無論是數位展覽、虛擬門市還是品牌形象館，<br>上傳720°環景照或套用100+3D空間模板，一鍵完成空間佈置。'
-      },
-      aiCharacter: {
-        title: '各式AI人物自由選擇，<br>打造品牌專屬代言人',
         description: '無論是數位展覽、虛擬門市還是品牌形象館，上傳720°環景照或套用100+3D空間模板，一鍵完成空間佈置。'
       },
+      aiCharacter: {
+        title: '<span>各式AI人物自由選擇，</span><br><span>打造品牌專屬代言人</span>',
+        description: '後台提供多樣AI助理角色，從客服到講師、接待人員，皆可彈性選用，立即啟用。'
+      },
       realtime: {
-        title: '後台資料即時更新，<br>AI同步讀取毫無時差',
-        description: '透過完整後台，隨時掌握最新內容，<br>改動即刻上線。'
+        title: '<span>後台資料即時更新，</span><br><span>AI同步讀取毫無時差</span>',
+        description: '透過完整後台，隨時掌握最新內容，改動即刻上線。'
       }
     }
   },
@@ -234,7 +234,7 @@ export default {
         items: {
           friendly: '親切迎賓型',
           professional: '知性專業型',
-          consultant: '智慧顧問型',
+          consultant: '未來潮流型',
           consultant2: '智慧顧問型'
         }
       },
@@ -250,7 +250,7 @@ export default {
       },
       aiRecommendation: {
         title: 'AI導覽精準推薦',
-        description: '多元素材XAI推薦，資訊不漏接，服務更到位。',
+        description: '多元素材 x AI推薦，資訊不漏接，服務更到位。',
         items: {
           model3d: '3D 模型展示',
           imageText: '圖文資訊瀏覽',

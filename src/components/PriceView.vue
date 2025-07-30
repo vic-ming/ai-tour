@@ -36,8 +36,9 @@ const emit = defineEmits(['openContactPopUp'])
 const rentPlanList = [
   {
     days: '7',
+    months: null,
     device_size: ['32', '55'],
-    device_price: 6000,
+    device_price: [6000, 12000],
     plan: [
       {
         name_en: 'Premium',
@@ -53,8 +54,9 @@ const rentPlanList = [
   },
   {
     days: '30',
+    months: null,
     device_size: ['32', '55'],
-    device_price: 9000,
+    device_price: [9000, 15000],
     plan: [
       {
         name_en: 'Premium',
@@ -69,9 +71,10 @@ const rentPlanList = [
     ]
   },
   {
-    months: '3',
+    days: null,
+    months: 3,
     device_size: ['32', '55'],
-    device_price: 15000,
+    device_price: [15000, 20000],
     plan: [
       {
         name_en: 'Premium',
@@ -114,13 +117,13 @@ const buyPlanList = [
         name_en: 'Premium',
         name_zh: '年費',
         price: 28790,
-        discount: ''
+        discount: '8折'
       },
       {
         name_en: 'Enterprise',
         name_zh: '年費',
         price: 47990,
-        discount: ''
+        discount: '8折'
       },
     ]
   },

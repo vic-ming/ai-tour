@@ -15,8 +15,17 @@
     <!-- 硬體租金 -->
     <div class="price-rent-plan-element-price">
       <span :class="{ 'price-rent-plan-element-price-en': !isZH }">{{ type === 'rent' ? $t('plan.hardwareRent') : $t('plan.buyPrice') }}</span>
-      <span>${{ amountFormat(plan.device_price) }}</span>
-      <span>+</span>
+      <span v-if="activeSize && type === 'rent'">
+        <span class="bold">$</span>
+        <span class="bold">{{ activeSize === '32' ? amountFormat(plan.device_price[0]) : amountFormat(plan.device_price[1]) }}</span>
+        <span class="bold">+</span>
+      </span>
+      <span v-if="type === 'buy'">
+        <span class="bold">$</span>
+        <span class="bold">{{amountFormat(plan.device_price) }}</span>
+        <span class="bold">+</span>
+      </span>
+      <span v-else>-</span>
     </div>
     <!-- 方案 -->
     <div class="price-rent-plan-element-plans" :class="{ 'price-rent-plan-element-plans-buy': type === 'buy' }">
@@ -29,7 +38,7 @@
           <span :class="{ 'discount': item.discount }">${{ amountFormat(item.price) }} {{ type === 'rent' ? '/' + $t('plan.month') : '' }}</span>
         </div>
         <div v-if="item.discount" class="price-rent-plan-element-plan-item-discount">
-          <span>{{ item.discount }}</span>
+          <span>{{ isZH ? item.discount : '20% off' }}</span>
         </div>
       </div>
     </div>
@@ -64,7 +73,20 @@ const activePlan = ref('');
 
 const totalPrice = computed(() => {
   if (props.type === 'rent' && activeSize.value && activePlan.value) {
-    return Number(props.plan.device_price) + Number(props.plan.plan.find(item => item.name_en === activePlan.value).price);
+    if (activeSize.value === '32') {
+      if (props.plan.months) {
+        return Number(props.plan.device_price[0]) + Number(props.plan.plan.find(item => item.name_en === activePlan.value).price) * Number(props.plan.months);
+      } else {
+        return Number(props.plan.device_price[0]) + Number(props.plan.plan.find(item => item.name_en === activePlan.value).price);
+      }
+    }
+    if (activeSize.value === '55') {
+      if (props.plan.months) {
+        return Number(props.plan.device_price[1]) + Number(props.plan.plan.find(item => item.name_en === activePlan.value).price) * Number(props.plan.months);
+      } else {
+        return Number(props.plan.device_price[1]) + Number(props.plan.plan.find(item => item.name_en === activePlan.value).price);
+      }
+    }
   }
   if (props.type === 'buy' && activePlan.value) {
     return Number(props.plan.device_price) + Number(props.plan.plan.find(item => item.name_en === activePlan.value).price);
@@ -153,6 +175,10 @@ $primary-color: #353535;
       line-height: 1.5;
       font-weight: 400;
       color: #353535;
+      &.bold{
+        font-size: 18px;
+        font-weight: 700;
+      }
       &:nth-child(2) {
         font-size: 18px;
         font-weight: 700;
@@ -231,7 +257,7 @@ $primary-color: #353535;
       .price-rent-plan-element-plan-item-discount {
         position: absolute;
         top: -10px;
-        left: -12.5px;
+        left: -5.5px;
         background-color: #FFF2F2;
         padding: 2px 8px;
         border-radius: 4px;

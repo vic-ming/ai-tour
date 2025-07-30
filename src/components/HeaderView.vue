@@ -59,7 +59,6 @@ onMounted(() => {
 
 const checkIsMobile = () => {
   isMobile.value = window.innerWidth <= 768
-  console.log('isMobile', isMobile.value)
 }
 
 const toggleLanguageList = () => {
