@@ -1,6 +1,6 @@
 <template>
   <div class="banner-view">
-    <video src="@/assets/video/banner_video.mp4" autoplay muted loop></video>
+    <video src="@/assets/video/banner_video.mp4" autoplay loop :muted="isMuted"></video>
     <div class="banner-view-content">
       <div class="banner-view-content-container">
       <div class="banner-view-content-subtitle" data-aos="fade-up">
@@ -14,10 +14,20 @@
       </div>
       </div>
     </div>
+    <div class="banner-mute-button" @click="toggleMute">
+      <img v-if="isMuted" src="@/assets/images/volume_off.svg" alt="volume_off">
+      <img v-else src="@/assets/images/volume.svg" alt="volume">
+    </div>
   </div>
 </template>
 <script setup>
+import { ref } from 'vue'
 
+const isMuted = ref(true)
+
+const toggleMute = () => {
+  isMuted.value = !isMuted.value
+}
 </script>
 <style lang="scss" scoped>
 .banner-view {
@@ -28,7 +38,15 @@
   align-items: center;
   justify-content: center;
   position: relative;
-
+  .banner-mute-button {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 28px;
+    top: 123px;
+    z-index: 2;
+    cursor: pointer;
+  }
   video {
     width: 100%;
     height: 100%;
@@ -92,10 +110,20 @@
     }
   }
 }
+@media (max-width: 1256px) {
+  .banner-view {
+    .banner-mute-button {
+      right: 16px;
+    }
+  }
+}
 @media (max-width: 768px) {
   .banner-view {
 
     padding-bottom: calc(300px / 393px * 100%);
+    .banner-mute-button {
+      top: 76px;
+    }
     .banner-view-content {
       .banner-view-content-container {
         bottom: 50px;

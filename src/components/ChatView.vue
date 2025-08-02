@@ -13,29 +13,63 @@
       <div class="ripple ripple-2"></div>
       <div class="ripple ripple-3"></div>
     </div>
-    <div class="chat-view-video">
-      <video ref="videoRef" src="@/assets/video/chat_video.webm" autoplay muted loop @timeupdate="handleTimeUpdate"></video>
+    <div class="chat-view-media">
+      <!-- Safari 顯示圖片 -->
+      <img
+        v-if="isSafari"
+        src="@/assets/images/chat_img.webp"
+        alt="Chat"
+        class="chat-media-video"
+      />
+      <!-- 非 Safari 顯示影片 -->
+      <video
+        v-else
+        ref="videoRef"
+        autoplay
+        muted
+        loop
+        playsinline
+        @timeupdate="handleTimeUpdate"
+        class="chat-media-video"
+      >
+        <source src="@/assets/video/chat_video.webm" type="video/webm">
+        您的瀏覽器不支援影片播放。
+      </video>
     </div>
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+const isZH = computed(() => locale.value === 'zh-TW')
 
 const videoRef = ref(null)
+const isSafari = ref(false)
+
+// 檢測是否為 Safari 瀏覽器
+const detectSafari = () => {
+  const ua = navigator.userAgent.toLowerCase()
+  // 檢測 Safari 但排除 Chrome (因為 Chrome 也會包含 safari 字串)
+  return ua.includes('safari') && !ua.includes('chrome') && !ua.includes('android')
+}
+
+onMounted(() => {
+  isSafari.value = detectSafari()
+})
 
 const handleTimeUpdate = () => {
   if (videoRef.value) {
     const video = videoRef.value
     const progress = video.currentTime / video.duration
 
-    // 當播放進度達到99%時重頭播放
+    // 當播放進度達到97%時重頭播放，確保無縫循環
     if (progress >= 0.97) {
       video.currentTime = 0
     }
   }
 }
-
-// 由於使用了Vue的事件綁定(@timeupdate)，不需要手動添加事件監聽器
 </script>
 <style lang="scss" scoped>
 .chat-view {
@@ -111,11 +145,17 @@ const handleTimeUpdate = () => {
       }
     }
   }
-  .chat-view-video {
+  .chat-view-media {
     position: absolute;
     top: 36px;
     right: -9vw;
-    video {
+
+    .chat-media-video {
+      width: 57vw;
+      object-fit: cover;
+    }
+
+    .chat-media-img {
       width: 57vw;
       object-fit: cover;
     }
@@ -145,7 +185,7 @@ const handleTimeUpdate = () => {
         height: 400px;
       }
     }
-    .chat-view-video {
+    .chat-view-media {
       right: -7vw;
     }
   }
@@ -176,11 +216,13 @@ const handleTimeUpdate = () => {
         }
       }
     }
-    .chat-view-video {
+    .chat-view-media {
       right: calc(50% - 213px);
       bottom: -385px;
       top: auto;
-      video {
+
+      .chat-media-video,
+      .chat-media-img {
         width: 427px
       }
     }
