@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+# 忽略大型影片文件
+src/assets/video/*.mov
+src/assets/video/*.mp4
